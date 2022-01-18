@@ -29,12 +29,173 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.Score_Box = new System.Windows.Forms.TextBox();
+            this.game_finish_Btn = new System.Windows.Forms.Button();
+            this.game_start_Btn = new System.Windows.Forms.Button();
+            this.label_score = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 12);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(300, 600);
+            this.flowLayoutPanel1.TabIndex = 1;
+            // 
+            // Score_Box
+            // 
+            this.Score_Box.BackColor = System.Drawing.Color.Gray;
+            this.Score_Box.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Score_Box.Font = new System.Drawing.Font("굴림", 15F);
+            this.Score_Box.ForeColor = System.Drawing.SystemColors.Window;
+            this.Score_Box.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.Score_Box.Location = new System.Drawing.Point(318, 87);
+            this.Score_Box.Name = "Score_Box";
+            this.Score_Box.ReadOnly = true;
+            this.Score_Box.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.Score_Box.Size = new System.Drawing.Size(164, 30);
+            this.Score_Box.TabIndex = 2;
+            // 
+            // game_finish_Btn
+            // 
+            this.game_finish_Btn.Location = new System.Drawing.Point(318, 574);
+            this.game_finish_Btn.Name = "game_finish_Btn";
+            this.game_finish_Btn.Size = new System.Drawing.Size(164, 38);
+            this.game_finish_Btn.TabIndex = 4;
+            this.game_finish_Btn.Text = "게임 종료";
+            this.game_finish_Btn.UseVisualStyleBackColor = true;
+            this.game_finish_Btn.Click += new System.EventHandler(this.game_finish_Btn_Click);
+            // 
+            // game_start_Btn
+            // 
+            this.game_start_Btn.Location = new System.Drawing.Point(318, 529);
+            this.game_start_Btn.Name = "game_start_Btn";
+            this.game_start_Btn.Size = new System.Drawing.Size(164, 39);
+            this.game_start_Btn.TabIndex = 5;
+            this.game_start_Btn.Text = "게임 시작";
+            this.game_start_Btn.UseVisualStyleBackColor = true;
+            // 
+            // label_score
+            // 
+            this.label_score.AutoSize = true;
+            this.label_score.Font = new System.Drawing.Font("굴림", 11F, System.Drawing.FontStyle.Bold);
+            this.label_score.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label_score.Location = new System.Drawing.Point(318, 69);
+            this.label_score.Name = "label_score";
+            this.label_score.Size = new System.Drawing.Size(51, 15);
+            this.label_score.TabIndex = 6;
+            this.label_score.Text = "Score";
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox2.Image = global::practice_3_테트리스.Properties.Resources.how_to_play_tetris;
+            this.pictureBox2.Location = new System.Drawing.Point(318, 352);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(164, 165);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 7;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::practice_3_테트리스.Properties.Resources.테트리스_배경_로고;
+            this.pictureBox1.Location = new System.Drawing.Point(318, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(164, 41);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("굴림", 11F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label1.Location = new System.Drawing.Point(350, 328);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(99, 15);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "How to Play";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("굴림", 11F, System.Drawing.FontStyle.Bold);
+            this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label2.Location = new System.Drawing.Point(355, 135);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(89, 15);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Next Block";
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox3.Location = new System.Drawing.Point(318, 153);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(164, 164);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 10;
+            this.pictureBox3.TabStop = false;
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ClientSize = new System.Drawing.Size(489, 624);
+            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.label_score);
+            this.Controls.Add(this.game_finish_Btn);
+            this.Controls.Add(this.game_start_Btn);
+            this.Controls.Add(this.Score_Box);
+            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.pictureBox1);
+            this.Name = "Form1";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
+
+        private System.Windows.Forms.PictureBox pictureBox1;//테트리스 로고
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.TextBox Score_Box;
+        private System.Windows.Forms.Button game_finish_Btn;
+        private System.Windows.Forms.Button game_start_Btn;
+        private System.Windows.Forms.Label label_score;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label label1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.PictureBox pictureBox3;
     }
 }
 

@@ -16,5 +16,25 @@ namespace practice_3_테트리스
         {
             InitializeComponent();
         }
+
+
+
+
+
+
+
+        private void game_finish_Btn_Click(object sender, EventArgs e)
+        {
+            //무슨 차이인지 모르겠으니, 모두 구현후 알아보자.
+            //Environment.Exit();
+            //Application.Exit();
+            Environment.Exit(0);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
