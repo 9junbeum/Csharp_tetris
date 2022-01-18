@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "practice_3_테트리스", "practice_3_테트리스\practice_3_테트리스.csproj", "{D1924511-5C46-4EA9-9F6D-033228F4D1BB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D1924511-5C46-4EA9-9F6D-033228F4D1BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1924511-5C46-4EA9-9F6D-033228F4D1BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1924511-5C46-4EA9-9F6D-033228F4D1BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1924511-5C46-4EA9-9F6D-033228F4D1BB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {38600D54-0214-4358-9703-7D8CEB47A8BC}
+	EndGlobalSection
+EndGlobal
