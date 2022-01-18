@@ -34,14 +34,14 @@
             this.game_finish_Btn = new System.Windows.Forms.Button();
             this.game_start_Btn = new System.Windows.Forms.Button();
             this.label_score = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.downtimer = new System.Windows.Forms.Timer(this.components);
+            this.howtoplaypicture = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.howtoplaypicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
@@ -97,22 +97,22 @@
             this.label_score.TabIndex = 6;
             this.label_score.Text = "Score";
             // 
-            // timer1
+            // downtimer
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.downtimer.Enabled = true;
+            this.downtimer.Interval = 1000;
+            this.downtimer.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // pictureBox2
+            // howtoplaypicture
             // 
-            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox2.Image = global::practice_3_테트리스.Properties.Resources.how_to_play_tetris;
-            this.pictureBox2.Location = new System.Drawing.Point(318, 352);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(164, 165);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 7;
-            this.pictureBox2.TabStop = false;
+            this.howtoplaypicture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.howtoplaypicture.Image = global::practice_3_테트리스.Properties.Resources.how_to_play_tetris;
+            this.howtoplaypicture.Location = new System.Drawing.Point(318, 352);
+            this.howtoplaypicture.Name = "pictureBox2";
+            this.howtoplaypicture.Size = new System.Drawing.Size(164, 165);
+            this.howtoplaypicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.howtoplaypicture.TabIndex = 7;
+            this.howtoplaypicture.TabStop = false;
             // 
             // pictureBox1
             // 
@@ -165,7 +165,7 @@
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.howtoplaypicture);
             this.Controls.Add(this.label_score);
             this.Controls.Add(this.game_finish_Btn);
             this.Controls.Add(this.game_start_Btn);
@@ -174,7 +174,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.howtoplaypicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
@@ -190,8 +190,8 @@
         private System.Windows.Forms.Button game_finish_Btn;
         private System.Windows.Forms.Button game_start_Btn;
         private System.Windows.Forms.Label label_score;
-        private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Timer downtimer;
+        private System.Windows.Forms.PictureBox howtoplaypicture;
         private System.Windows.Forms.Label label1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Label label2;
