@@ -12,13 +12,12 @@ namespace practice_3_테트리스
 {
     public partial class Tetris : Form
     {
+        Game new_game = new Game();
+
         public Tetris()
         {
             InitializeComponent();
         }
-
-        Game new_game = new Game();
-
 
         private void game_finish_Btn_Click(object sender, EventArgs e)
         {
@@ -30,24 +29,40 @@ namespace practice_3_테트리스
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            //타이머가 한번 깜빡이면 실행.
+            new_game.Game_routine();
         }
 
         private void game_start_Btn_Click(object sender, EventArgs e)
         {
-
+            if(new_game.Is_Play)    //게임 중.
+            {
+                //게임중일때는 리셋할건지 물어본다.
+                downtimer.Stop();
+                DialogResult result = MessageBox.Show("게임이 실행중입니다. 리셋할까요?", "중단", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if(result == DialogResult.Yes)
+                {
+                    //리셋
+                }
+                else if(result == DialogResult.No)
+                {
+                    //게임 재개
+                    downtimer.Start();
+                }
+            }
+            else                    //게임 시작 이전.
+            {
+                //게임이 시작되면 게임판을 리셋하고
+                new_game.Start_Game();
+                downtimer.Start();
+            }
         }
 
 
-        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        private void Tetris_Load(object sender, EventArgs e)
         {
-            new_game.Init_Game_Board();
-            new_game.Draw_Board(e.Graphics);
-        }
-
-        private void pictureBox3_Paint(object sender, PaintEventArgs e)
-        {
-            new_game.Draw_Preview(e.Graphics);
+            //그리는 그래픽 g 인자를 넘겨주는 곳
+            new_game.game_g = flowLayoutPanel1.CreateGraphics();
+            new_game.prev_g = pictureBox3.CreateGraphics();
         }
     }
 }

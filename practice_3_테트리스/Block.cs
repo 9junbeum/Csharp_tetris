@@ -9,12 +9,8 @@ namespace practice_3_테트리스
     internal class Block
     {
         //멤버 변수
-        public int x;
-        public int y;           // (x,y) 좌표
-        public Boolean[,] shape = new Boolean[4,4];       // 블럭의 모양 (총 7가지)
-        public Boolean Is_new;  //새 블럭인지 확인(떨어지는 개체)
+        public int[,] shape = new int[4,4];       // 블럭의 모양 (총 7가지)
         
-
         public Block() {} //생성자
 
         public Block Create_Block() //블럭을 새로 만든다.
@@ -29,194 +25,176 @@ namespace practice_3_테트리스
                     this.shape[i,j] = BLOCK_SHAPE[new_block, 0,i,j];
                 }
             }
-            this.Is_new = true; //새거
 
             return this; //랜덤 모양의 블록 객체를 반환한다.
         }
 
-        public void set_Block_Position(int x, int y)
-        {
-            this.x = x;
-            this.y = y;
-        }
-        private void MoveLeft()
-        {
-            this.x--;
-        }
-        private void MoveRight()
-        {
-            this.x++;
-        }
-        private void MoveDown()
-        {
-            this.y++;
-        }
 
-        public static readonly bool[,,,] BLOCK_SHAPE = new bool[7, 4, 4, 4] //블럭 모양, 회전 모양, 가로pixel, 세로 pixel 
+        public static readonly int [,,,] BLOCK_SHAPE = new int[7, 4, 4, 4] //블럭 모양, 회전 모양, 가로pixel, 세로 pixel 
         {
             {               //ㅁㅁㅁㅁ
                 {
-                    {false, false, true, false },
-                    {false, false, true, false },
-                    {false, false, true, false },
-                    {false, false, true, false }
+                    {0, 0, 1, 0 },
+                    {0, 0, 1, 0 },
+                    {0, 0, 1, 0 },
+                    {0, 0, 1, 0 }
                 },
                 {
-                    {false, false, false, false },
-                    {true,  true,  true , true  },
-                    {false, false, false, false },
-                    {false, false, false, false }
+                    {0, 0, 0, 0 },
+                    {1, 1, 1, 1 },
+                    {0, 0, 0, 0 },
+                    {0, 0, 0, 0 }
                 },
                 {
-                    {false, true, false, false },
-                    {false, true, false, false },
-                    {false, true, false, false },
-                    {false, true, false, false }
+                    {0, 1, 0, 0 },
+                    {0, 1, 0, 0 },
+                    {0, 1, 0, 0 },
+                    {0, 1, 0, 0 }
                 },
                 {
-                    {false, false, false, false },
-                    {false, false, false, false },
-                    {true,  true,  true,  true  },
-                    {false, false, false, false }
+                    {0, 0, 0, 0 },
+                    {0, 0, 0, 0 },
+                    {1, 1, 1, 1 },
+                    {0, 0, 0, 0 }
                 }
             },
 
 
             {             //ㅁㅁ                           
                 {        // ㅁㅁ
-                    {false, false, false, false },
-                    {false, true,  true,  false },
-                    {false, true,  true,  false },
-                    {false, false, false, false }
+                    {0, 0, 0, 0 },
+                    {0, 1, 1, 0 },
+                    {0, 1, 1, 0 },
+                    {0, 0, 0, 0 }
                 },
                 {
-                    {false, false, false, false },
-                    {false, true,  true,  false },
-                    {false, true,  true,  false },
-                    {false, false, false, false }
+                    {0, 0, 0, 0 },
+                    {0, 1, 1, 0 },
+                    {0, 1, 1, 0 },
+                    {0, 0, 0, 0 }
                 },
                 {
-                    {false, false, false, false },
-                    {false, true,  true,  false },
-                    {false, true,  true,  false },
-                    {false, false, false, false }
+                    {0, 0, 0, 0 },
+                    {0, 1, 1, 0 },
+                    {0, 1, 1, 0 },
+                    {0, 0, 0, 0 }
                 },
                 {
-                    {false, false, false, false },
-                    {false, true,  true,  false },
-                    {false, true,  true,  false },
-                    {false, false, false, false }
+                    {0, 0, 0, 0 },
+                    {0, 1, 1, 0 },
+                    {0, 1, 1, 0 },
+                    {0, 0, 0, 0 }
                 }
             },
             
                          //   ㅁ
             {            // ㅁㅁ
                 {        // ㅁ
-                    {false, false, true, false },
-                    {false, true, true, false },
-                    {false, true, false, false },
-                    {false, false, false, false }
+                    {0, 0, 1, 0 },
+                    {0, 1, 1, 0 },
+                    {0, 1, 0, 0 },
+                    {0, 0, 0, 0 }
                 },
                 {
-                    {false, true,  true,  false},
-                    {false, false, true,  true },
-                    {false, false, false, false},
-                    {false, false, false, false}
+                    {0, 1, 1, 0 },
+                    {0, 0, 1, 1 },
+                    {0, 0, 0, 0 },
+                    {0, 0, 0, 0 }
                 },
                 {
-                    {false, false, true, false },
-                    {false, true, true, false },
-                    {false, true, false, false },
-                    {false, false, false, false }
+                    {0, 0, 1, 0 },
+                    {0, 1, 1, 0 },
+                    {0, 1, 0, 0 },
+                    {0, 0, 0, 0 }
                 },
                 {
-                    {false, true,  true,  false},
-                    {false, false, true,  true },
-                    {false, false, false, false},
-                    {false, false, false, false}
+                    {0, 1, 1, 0 },
+                    {0, 0, 1, 1 },
+                    {0, 0, 0, 0 },
+                    {0, 0, 0, 0 }
                 }
             },
 
                         //ㅁ
             {           //ㅁㅁ
                 {       //  ㅁ
-                    {false, true, false, false },
-                    {false, true, true, false },
-                    {false, false, true, false },
-                    {false, false, false, false }
+                    {0, 1, 0, 0 },
+                    {0, 1, 1, 0 },
+                    {0, 0, 1, 0 },
+                    {0, 0, 0, 0 }
                 },
                 {
-                    {false, false, false, false },
-                    {false, false, true, true },
-                    {false, true, true, false },
-                    {false, false, false, false }
+                    {0, 0, 0, 0 },
+                    {0, 0, 1, 1 },
+                    {0, 1, 1, 0 },
+                    {0, 0, 0, 0 }
                 },
                 {
-                    {false, true, false, false },
-                    {false, true, true, false },
-                    {false, false, true, false },
-                    {false, false, false, false }
+                    {0, 1, 0, 0 },
+                    {0, 1, 1, 0 },
+                    {0, 0, 1, 0 },
+                    {0, 0, 0, 0 }
                 },
                 {
-                    {false, false, false, false },
-                    {false, false, true, true },
-                    {false, true, true, false },
-                    {false, false, false, false }
+                    {0, 0, 0, 0 },
+                    {0, 0, 1, 1 },
+                    {0, 1, 1, 0 },
+                    {0, 0, 0, 0 }
                 }
             },
 
             {            //ㅁ
                 {        //ㅁㅁㅁ
-                    {false, false, false, false },
-                    {false, true,  false, false },
-                    {false, true,  true,  true  },
-                    {false, false, false, false }
+                    {0, 0, 0, 0 },
+                    {0, 1, 0, 0 },
+                    {0, 1, 1, 1 },
+                    {0, 0, 0, 0 }
                 },
                 {
-                    {false, true,  true,  false },
-                    {false, true,  false, false },
-                    {false, true,  false, false },
-                    {false, false, false, false }
+                    {0, 1, 1, 0 },
+                    {0, 1, 0, 0 },
+                    {0, 1, 0, 0 },
+                    {0, 0, 0, 0 }
                 },
                 {
-                    {false, false, false, false },
-                    {false, true,  true,  true },
-                    {false, false, false, true },
-                    {false, false, false, false }
+                    {0, 0, 0, 0 },
+                    {0, 1, 1, 1 },
+                    {0, 0, 0, 1 },
+                    {0, 0, 0, 0 }
                 },
                 {
-                    {false, false, false, true },
-                    {false, false, false, true },
-                    {false, false, true,  true },
-                    {false, false, false, false }
+                    {0, 0, 0, 1 },
+                    {0, 0, 0, 1 },
+                    {0, 0, 1, 1 },
+                    {0, 0, 0, 0 }
                 }
             },
 
 
             {         //    ㅁ
                 {     //ㅁㅁㅁ
-                    {false, false, false, false },
-                    {false, false, false, true },
-                    {false, true, true, true },
-                    {false, false, false, false }
+                    {0, 0, 0, 0 },
+                    {0, 0, 0, 1 },
+                    {0, 1, 1, 1 },
+                    {0, 0, 0, 0 }
                 },
                 {
-                    {false, false, true, false },
-                    {false, false, true, false },
-                    {false, false, true, true },
-                    {false, false, false, false }
+                    {0, 0, 1, 0 },
+                    {0, 0, 1, 0 },
+                    {0, 0, 1, 1 },
+                    {0, 0, 0, 0 }
                 },
                 {
-                    {false, false, false, false },
-                    {false, true, true, true },
-                    {false, true, false, false },
-                    {false, false, false, false }
+                    {0, 0, 0, 0 },
+                    {0, 1, 1, 1 },
+                    {0, 1, 0, 0 },
+                    {0, 0, 0, 0 }
                 },
                 {
-                    {false, true, true, false },
-                    {false, false, true, false },
-                    {false, false, true, false },
-                    {false, false, false, false }
+                    {0, 1, 1, 0 },
+                    {0, 0, 1, 0 },
+                    {0, 0, 1, 0 },
+                    {0, 0, 0, 0 }
                 }
             },
 
@@ -224,28 +202,28 @@ namespace practice_3_테트리스
 
             {           //  ㅁ
                 {       //ㅁㅁㅁ
-                    {false, false, true, false },
-                    {false, true, true, true },
-                    {false, false, false, false },
-                    {false, false, false, false }
+                    {0, 0, 1, 0 },
+                    {0, 1, 1, 1 },
+                    {0, 0, 0, 0 },
+                    {0, 0, 0, 0 }
                 },
                 {
-                    {false, false, true, false },
-                    {false, false, true, true },
-                    {false, false, true, false },
-                    {false, false, false, false }
+                    {0, 0, 1, 0 },
+                    {0, 0, 1, 1 },
+                    {0, 0, 1, 0 },
+                    {0, 0, 0, 0 }
                 },
                 {
-                    {false, false, false, false },
-                    {false, true, true, true },
-                    {false, false, true, false },
-                    {false, false, false, false }
+                    {0, 0, 0, 0 },
+                    {0, 1, 1, 1 },
+                    {0, 0, 1, 0 },
+                    {0, 0, 0, 0 }
                 },
                 {
-                    {false, false, true, false },
-                    {false, true, true, false },
-                    {false, false, true, false },
-                    {false, false, false, false }
+                    {0, 0, 1, 0 },
+                    {0, 1, 1, 0 },
+                    {0, 0, 1, 0 },
+                    {0, 0, 0, 0 }
                 }
             }
 
