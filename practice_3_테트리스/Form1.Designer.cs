@@ -126,7 +126,6 @@
             this.label3.TabIndex = 11;
             this.label3.Text = "0";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // pictureBox2
             // 
@@ -143,7 +142,7 @@
             this.pictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox3.Location = new System.Drawing.Point(324, 166);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(152, 152);
+            this.pictureBox3.Size = new System.Drawing.Size(154, 154);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 10;
             this.pictureBox3.TabStop = false;
@@ -188,7 +187,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox2);
             this.Name = "Tetris";
-            this.Text = "Form1";
+            this.Text = "TETRIS";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.howtoplaypicture)).EndInit();
