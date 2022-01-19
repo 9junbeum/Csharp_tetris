@@ -1,6 +1,6 @@
 ﻿namespace practice_3_테트리스
 {
-    partial class Form1
+    partial class Tetris
     {
         /// <summary>
         /// 필수 디자이너 변수입니다.
@@ -30,42 +30,32 @@
         {
             this.components = new System.ComponentModel.Container();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.Score_Box = new System.Windows.Forms.TextBox();
             this.game_finish_Btn = new System.Windows.Forms.Button();
             this.game_start_Btn = new System.Windows.Forms.Button();
             this.label_score = new System.Windows.Forms.Label();
             this.downtimer = new System.Windows.Forms.Timer(this.components);
-            this.howtoplaypicture = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.howtoplaypicture = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.howtoplaypicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 12);
+            this.flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(10, 11);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(300, 600);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(302, 602);
             this.flowLayoutPanel1.TabIndex = 1;
-            // 
-            // Score_Box
-            // 
-            this.Score_Box.BackColor = System.Drawing.Color.Gray;
-            this.Score_Box.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Score_Box.Font = new System.Drawing.Font("굴림", 15F);
-            this.Score_Box.ForeColor = System.Drawing.SystemColors.Window;
-            this.Score_Box.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Score_Box.Location = new System.Drawing.Point(318, 87);
-            this.Score_Box.Name = "Score_Box";
-            this.Score_Box.ReadOnly = true;
-            this.Score_Box.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Score_Box.Size = new System.Drawing.Size(164, 30);
-            this.Score_Box.TabIndex = 2;
+            this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
             // 
             // game_finish_Btn
             // 
@@ -85,6 +75,7 @@
             this.game_start_Btn.TabIndex = 5;
             this.game_start_Btn.Text = "게임 시작";
             this.game_start_Btn.UseVisualStyleBackColor = true;
+            this.game_start_Btn.Click += new System.EventHandler(this.game_start_Btn_Click);
             // 
             // label_score
             // 
@@ -102,27 +93,6 @@
             this.downtimer.Enabled = true;
             this.downtimer.Interval = 1000;
             this.downtimer.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // howtoplaypicture
-            // 
-            this.howtoplaypicture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.howtoplaypicture.Image = global::practice_3_테트리스.Properties.Resources.how_to_play_tetris;
-            this.howtoplaypicture.Location = new System.Drawing.Point(318, 352);
-            this.howtoplaypicture.Name = "pictureBox2";
-            this.howtoplaypicture.Size = new System.Drawing.Size(164, 165);
-            this.howtoplaypicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.howtoplaypicture.TabIndex = 7;
-            this.howtoplaypicture.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::practice_3_테트리스.Properties.Resources.테트리스_배경_로고;
-            this.pictureBox1.Location = new System.Drawing.Point(318, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(164, 41);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // label1
             // 
@@ -146,6 +116,28 @@
             this.label2.TabIndex = 9;
             this.label2.Text = "Next Block";
             // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("새굴림", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label3.Location = new System.Drawing.Point(325, 103);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(151, 24);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "0";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::practice_3_테트리스.Properties.Resources.점수판;
+            this.pictureBox2.Location = new System.Drawing.Point(318, 97);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(164, 35);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 12;
+            this.pictureBox2.TabStop = false;
+            // 
             // pictureBox3
             // 
             this.pictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -156,12 +148,34 @@
             this.pictureBox3.TabIndex = 10;
             this.pictureBox3.TabStop = false;
             // 
-            // Form1
+            // howtoplaypicture
+            // 
+            this.howtoplaypicture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.howtoplaypicture.Image = global::practice_3_테트리스.Properties.Resources.how_to_play_tetris;
+            this.howtoplaypicture.Location = new System.Drawing.Point(318, 352);
+            this.howtoplaypicture.Name = "howtoplaypicture";
+            this.howtoplaypicture.Size = new System.Drawing.Size(164, 165);
+            this.howtoplaypicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.howtoplaypicture.TabIndex = 7;
+            this.howtoplaypicture.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::practice_3_테트리스.Properties.Resources.테트리스_배경_로고;
+            this.pictureBox1.Location = new System.Drawing.Point(318, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(164, 41);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // Tetris
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(489, 624);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -169,14 +183,15 @@
             this.Controls.Add(this.label_score);
             this.Controls.Add(this.game_finish_Btn);
             this.Controls.Add(this.game_start_Btn);
-            this.Controls.Add(this.Score_Box);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.pictureBox1);
-            this.Name = "Form1";
+            this.Controls.Add(this.pictureBox2);
+            this.Name = "Tetris";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.howtoplaypicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -186,7 +201,6 @@
 
         private System.Windows.Forms.PictureBox pictureBox1;//테트리스 로고
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.TextBox Score_Box;
         private System.Windows.Forms.Button game_finish_Btn;
         private System.Windows.Forms.Button game_start_Btn;
         private System.Windows.Forms.Label label_score;
@@ -196,6 +210,8 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
 

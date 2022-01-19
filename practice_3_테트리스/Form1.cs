@@ -10,17 +10,14 @@ using System.Windows.Forms;
 
 namespace practice_3_테트리스
 {
-    public partial class Form1 : Form
+    public partial class Tetris : Form
     {
-        public Form1()
+        public Tetris()
         {
             InitializeComponent();
         }
 
-
-
-
-
+        Game new_game = new Game();
 
 
         private void game_finish_Btn_Click(object sender, EventArgs e)
@@ -34,6 +31,26 @@ namespace practice_3_테트리스
         private void timer1_Tick(object sender, EventArgs e)
         {
 
+        }
+
+        private void game_start_Btn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Score_Box_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+            new_game.Init_Game_Board();
+            new_game.Draw_Board(e.Graphics);
         }
 
     }
