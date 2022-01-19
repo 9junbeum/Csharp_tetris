@@ -30,7 +30,8 @@ namespace practice_3_테트리스
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-
+            //타이머가 한번 깜빡이면, 
+            Block block = new Block();
         }
 
         private void game_start_Btn_Click(object sender, EventArgs e)
@@ -53,5 +54,9 @@ namespace practice_3_테트리스
             new_game.Draw_Board(e.Graphics);
         }
 
+        private void pictureBox3_Paint(object sender, PaintEventArgs e)
+        {
+            new_game.Draw_Preview(e.Graphics);
+        }
     }
 }
