@@ -10,47 +10,21 @@ namespace practice_3_테트리스
 {
     internal class Game
     {
+        Block on_game_Block = new Block().null_block(); //게임판에 있는 블럭
+
+        public Graphics game_g = null;// 게임판에 그리는 그래픽 객체
+
         public const int BX = 10;//게임판 가로 넓이
         public const int BY = 20;//게임판 세로 넓이
         public const int CS = 30;//Cell Size (한칸의 크기)
 
-        public const int PVX = 4;//미리보기 가로 넓이
-        public const int PVY = 4;//미리보기 세로 넓이
-        public const int PVCS = 38;//미리보기 Cell Size
-
         private Color block_color = Color.OrangeRed;    //블록색
         private Color board_color = Color.OldLace;    //배경색
 
-        public Graphics game_g = null;// 게임판에 그리는 그래픽 객체
-        public Graphics prev_g = null;// 프리뷰에 그리는 그래픽 객체
-
-        public Boolean Is_Play = false; //게임중인가?
-        public int score = 0;               //점수
-
         public int[,] Game_board = new int[BX,BY];      //게임보드의 속성값(false, true)
-        public int[,] Preview_board = new int[PVX, PVY];//미리보기 보드의 속성값
-        
-        Block preview_Block = new Block().null_block(); //프리뷰에 있는 블럭 (1로 구성)
-        Block on_game_Block = new Block().null_block(); //게임판에 있는 블럭 (2로 구성)
 
-        Bitmap buffer = new Bitmap(BX,BY);
 
-        public Game() //생성자
-        {
-
-        }
-
-        //=================================================================================== 게임 시작 ===================================================================================
-        public void Start_Game()
-        {
-            //게임시작시 최초 한번만 실행.
-            
-            Init_Game_Board();  //배경 초기화
-            this.score = 0;     //점수 초기화
-            this.Is_Play = true;//상태 -> 게임중
-            preview_Block = new Block().Create_Block(); //일단 프리뷰를 채워줌.
-            //자..... 게임을 시작하지... ^@o@^
-        }
+        //Bitmap buffer = new Bitmap(BX,BY);
 
         public void Init_Game_Board()
         {
@@ -63,6 +37,8 @@ namespace practice_3_테트리스
                 }
             }
         }
+        
+
 
         //=================================================================================== 그림 그리기 ===================================================================================
 
@@ -92,31 +68,6 @@ namespace practice_3_테트리스
             //buffer.Dispose();
         }
 
-        public void Draw_Preview(Graphics g, Block b)
-        {
-            // 블럭을 프리뷰에 그린다.
-            if(b == null)
-            {
-                //블럭이 없을때는 그냥 그린다.
-                for (int i = 0; i < PVX; i++)
-                {
-                    for (int j = 0; j < PVY; j++)
-                    {
-                        Draw_Block(g, board_color, i, j, PVCS);
-                    }
-                }
-            }
-            for (int i = 0; i < PVX; i++)
-            {
-                for (int j = 0; j < PVY; j++)
-                {
-                    if (b.shape[i, j] != 0)
-                        Draw_Block(g, block_color, i, j, PVCS);
-                    else
-                        Draw_Block(g, board_color, i, j, PVCS);
-                }
-            }
-        }
 
         //=================================================================================== 블록 컨트롤 ===================================================================================
 
@@ -168,9 +119,11 @@ namespace practice_3_테트리스
                 case 0:
                     on_game_Block.mb_left();
                     break;
+
                 case 1:
                     on_game_Block.mb_right();
                     break;
+
                 case 2:
                     on_game_Block.mb_down();
                     break;
@@ -192,14 +145,14 @@ namespace practice_3_테트리스
             //1tick 마다 실행하는 함수.
             //기능 : 블록 가져오기, 블록을 한칸 아래로 움직이기, 점수 올리기 
 
-            if(on_game_Block == null)//블록이 없으면
+            if(on_game_Block.Is_null_block())//블록이 없으면
             {
                 shift_block();
                 show_block();
             }
             else//블록이 있으면,
             {
-
+                on_game_Block.mb_down();
             }
 
             Draw_Board(game_g);
