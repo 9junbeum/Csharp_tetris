@@ -58,7 +58,8 @@ namespace practice_3_테트리스
                 new_game.Start_Game();
                 downtimer.Start();
             }
-            this.flowLayoutPanel1.Focus();
+            this.Focus();
+            
         }
 
 
@@ -70,10 +71,9 @@ namespace practice_3_테트리스
             
         }
 
-        private void Tetris_KeyDown(object sender, KeyEventArgs e)
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            MessageBox.Show("키 발생");
-            switch(e.KeyCode)
+            switch (keyData)
             {
                 case Keys.Left:
                     new_game.Move_Block(0);
@@ -96,6 +96,7 @@ namespace practice_3_테트리스
                     break;
 
             }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
     }
