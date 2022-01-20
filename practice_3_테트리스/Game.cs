@@ -89,7 +89,17 @@ namespace practice_3_테트리스
         public void Draw_Preview(Graphics g, Block b)
         {
             // 블럭을 프리뷰에 그린다.
-            
+            if(b == null)
+            {
+                //블럭이 없을때는 그냥 그린다.
+                for (int i = 0; i < PVX; i++)
+                {
+                    for (int j = 0; j < PVY; j++)
+                    {
+                        Draw_Block(g, board_color, i, j, PVCS);
+                    }
+                }
+            }
             for (int i = 0; i < PVX; i++)
             {
                 for (int j = 0; j < PVY; j++)
@@ -121,15 +131,59 @@ namespace practice_3_테트리스
             on_game_Block = preview_Block;
             //프리뷰 블럭에는 새 블럭을 넣는다.
             preview_Block = new_block;
+            Draw_Preview(prev_g,preview_Block);
         }
 
+        private void show_block()
+        {
+            int x = 3;
+            int y = 0;
+            for(int i = 0;i<4;i++)
+            {
+                for(int j = 0;j<4;j++)
+                {
+                    //블럭을 해당 위치에 꺼낸다
+                    Game_board[i+3,j] = on_game_Block.shape[i,j];
+                    
+                }
+            }
+               
+        }
+
+        public void Move_Block()
+        {
+            //키보드로 블럭 제어하는 것( <- , V , -> )
+
+        }
+        public void Rotate_Block()
+        {
+            //회전
+        }
+
+        public void Drop_Block()
+        {
+            //떨어트리는것
+        }
 
         //=================================================================================== 게임 컨트롤 ===================================================================================
-        public void Game_routine()
+        public void Game_routine() // 1tick
         {
             //1tick 마다 실행하는 함수.
-            //기능 : 블록을 한칸 아래로 움직이기, 점수 올리기 
+            //기능 : 블록 가져오기, 블록을 한칸 아래로 움직이기, 점수 올리기 
+
+            if(on_game_Block == null)//블록이 없으면
+            {
+                shift_block();
+                show_block();
+            }
+            else//블록이 있으면,
+            {
+
+            }
+
+            Draw_Board(game_g);
         }
+
 
         public void block_landing()
         {

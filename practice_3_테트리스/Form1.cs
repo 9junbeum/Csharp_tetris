@@ -17,6 +17,7 @@ namespace practice_3_테트리스
         public Tetris()
         {
             InitializeComponent();
+            downtimer.Stop();
         }
 
         private void game_finish_Btn_Click(object sender, EventArgs e)
@@ -29,6 +30,7 @@ namespace practice_3_테트리스
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+
             new_game.Game_routine();
         }
 
@@ -63,6 +65,29 @@ namespace practice_3_테트리스
             //그리는 그래픽 g 인자를 넘겨주는 곳
             new_game.game_g = flowLayoutPanel1.CreateGraphics();
             new_game.prev_g = pictureBox3.CreateGraphics();
+        }
+
+        private void Tetris_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch(e.KeyCode)
+            {
+                case Keys.Left:
+                    new_game.Move_Block();
+                    break;
+
+                case Keys.Right:
+                    break;
+
+                case Keys.Down:
+                    break;
+
+                case Keys.Up:
+                    break;
+
+                case Keys.Space:
+                    break;
+
+            }
         }
     }
 }

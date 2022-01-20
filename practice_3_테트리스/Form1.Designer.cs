@@ -187,6 +187,7 @@
             this.Name = "Tetris";
             this.Text = "TETRIS";
             this.Load += new System.EventHandler(this.Tetris_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Tetris_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.howtoplaypicture)).EndInit();
