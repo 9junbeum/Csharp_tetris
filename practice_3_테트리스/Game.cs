@@ -33,6 +33,7 @@ namespace practice_3_테트리스
         Block preview_Block = null; //프리뷰에 있는 블럭 (1로 구성)
         Block on_game_Block = null; //게임판에 있는 블럭 (2로 구성)
 
+        Bitmap buffer = new Bitmap(BX,BY);
 
         public Game() //생성자
         {
@@ -66,9 +67,11 @@ namespace practice_3_테트리스
 
         public void Draw_Block(Graphics g, Color c, int x, int y, int cs)
         {
+            //buffer = new Bitmap(BX,BY);
             //네모 블럭 하나 그리는것.
             g.FillRectangle(new SolidBrush(c), x * cs, y * cs, cs, cs);
             g.DrawRectangle(new Pen(Color.DimGray), x * cs, y * cs, cs, cs);
+            
         }
 
         public void Draw_Board(Graphics g)
@@ -84,6 +87,8 @@ namespace practice_3_테트리스
                         Draw_Block(g, board_color, i, j, CS);
                 }
             }
+            //buffer.
+            //buffer.Dispose();
         }
 
         public void Draw_Preview(Graphics g, Block b)
@@ -150,10 +155,25 @@ namespace practice_3_테트리스
                
         }
 
-        public void Move_Block()
+        public void Move_Block(int key)
         {
             //키보드로 블럭 제어하는 것( <- , V , -> )
+            // 0 : left
+            // 1 : right
+            // 2 : down
 
+            switch(key)
+            {
+                case 0:
+                    on_game_Block.mb_left();
+                    break;
+                case 1:
+                    on_game_Block.mb_right();
+                    break;
+                case 2:
+                    on_game_Block.mb_down();
+                    break;
+            }
         }
         public void Rotate_Block()
         {

@@ -9,6 +9,7 @@ namespace practice_3_테트리스
     internal class Block
     {
         //멤버 변수
+        int x , y;//블럭의 위치
         public int[,] shape = new int[4,4];       // 블럭의 모양 (총 7가지)
         
         public Block() {} //생성자
@@ -25,8 +26,22 @@ namespace practice_3_테트리스
                     this.shape[i,j] = BLOCK_SHAPE[new_block, 0,i,j];
                 }
             }
-
+            this.x = 0;
+            this.y = 0;
             return this; //랜덤 모양의 블록 객체를 반환한다.
+        }
+
+        public void mb_left()
+        {
+            this.x--;
+        }
+        public void mb_right()
+        {
+            this.x++;
+        }
+        public void mb_down()
+        {
+            this.y++;
         }
 
 

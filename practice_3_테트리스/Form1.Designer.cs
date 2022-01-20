@@ -61,7 +61,8 @@
             this.game_finish_Btn.Location = new System.Drawing.Point(318, 574);
             this.game_finish_Btn.Name = "game_finish_Btn";
             this.game_finish_Btn.Size = new System.Drawing.Size(164, 38);
-            this.game_finish_Btn.TabIndex = 4;
+            this.game_finish_Btn.TabIndex = 0;
+            this.game_finish_Btn.TabStop = false;
             this.game_finish_Btn.Text = "게임 종료";
             this.game_finish_Btn.UseVisualStyleBackColor = true;
             this.game_finish_Btn.Click += new System.EventHandler(this.game_finish_Btn_Click);
@@ -71,7 +72,7 @@
             this.game_start_Btn.Location = new System.Drawing.Point(318, 529);
             this.game_start_Btn.Name = "game_start_Btn";
             this.game_start_Btn.Size = new System.Drawing.Size(164, 39);
-            this.game_start_Btn.TabIndex = 5;
+            this.game_start_Btn.TabIndex = 0;
             this.game_start_Btn.Text = "게임 시작";
             this.game_start_Btn.UseVisualStyleBackColor = true;
             this.game_start_Btn.Click += new System.EventHandler(this.game_start_Btn_Click);

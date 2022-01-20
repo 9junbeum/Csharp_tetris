@@ -69,22 +69,27 @@ namespace practice_3_테트리스
 
         private void Tetris_KeyDown(object sender, KeyEventArgs e)
         {
+            flowLayoutPanel1.Focus();
             switch(e.KeyCode)
             {
                 case Keys.Left:
-                    new_game.Move_Block();
+                    new_game.Move_Block(0);
                     break;
 
                 case Keys.Right:
+                    new_game.Move_Block(1);
                     break;
 
                 case Keys.Down:
+                    new_game.Move_Block(2);
                     break;
 
                 case Keys.Up:
+                    new_game.Rotate_Block();
                     break;
 
                 case Keys.Space:
+                    new_game.Drop_Block();
                     break;
 
             }
