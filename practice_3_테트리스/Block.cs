@@ -12,7 +12,41 @@ namespace practice_3_테트리스
         int x , y;//블럭의 위치
         public int[,] shape = new int[4,4];       // 블럭의 모양 (총 7가지)
         
-        public Block() {} //생성자
+        public Block() 
+        {
+            
+            //생성자
+        }
+
+        public Boolean Is_null_block()
+        {
+            //빈 블럭이면 true
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    if(this.shape[i, j] != 0)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        public Block null_block()
+        {
+            this.x = 0;
+            this.y = 0;
+
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    this.shape[i,j] = 0;
+                }
+            }
+            return this;
+        }
 
         public Block Create_Block() //블럭을 새로 만든다.
         {

@@ -30,8 +30,8 @@ namespace practice_3_테트리스
         public int[,] Game_board = new int[BX,BY];      //게임보드의 속성값(false, true)
         public int[,] Preview_board = new int[PVX, PVY];//미리보기 보드의 속성값
         
-        Block preview_Block = null; //프리뷰에 있는 블럭 (1로 구성)
-        Block on_game_Block = null; //게임판에 있는 블럭 (2로 구성)
+        Block preview_Block = new Block().null_block(); //프리뷰에 있는 블럭 (1로 구성)
+        Block on_game_Block = new Block().null_block(); //게임판에 있는 블럭 (2로 구성)
 
         Bitmap buffer = new Bitmap(BX,BY);
 
@@ -44,6 +44,7 @@ namespace practice_3_테트리스
         public void Start_Game()
         {
             //게임시작시 최초 한번만 실행.
+            
             Init_Game_Board();  //배경 초기화
             this.score = 0;     //점수 초기화
             this.Is_Play = true;//상태 -> 게임중

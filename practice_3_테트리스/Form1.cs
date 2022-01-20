@@ -36,6 +36,7 @@ namespace practice_3_테트리스
 
         private void game_start_Btn_Click(object sender, EventArgs e)
         {
+
             if(new_game.Is_Play)    //게임 중.
             {
                 //게임중일때는 리셋할건지 물어본다.
@@ -57,6 +58,7 @@ namespace practice_3_테트리스
                 new_game.Start_Game();
                 downtimer.Start();
             }
+            this.flowLayoutPanel1.Focus();
         }
 
 
@@ -65,11 +67,12 @@ namespace practice_3_테트리스
             //그리는 그래픽 g 인자를 넘겨주는 곳
             new_game.game_g = flowLayoutPanel1.CreateGraphics();
             new_game.prev_g = pictureBox3.CreateGraphics();
+            
         }
 
         private void Tetris_KeyDown(object sender, KeyEventArgs e)
         {
-            flowLayoutPanel1.Focus();
+            MessageBox.Show("키 발생");
             switch(e.KeyCode)
             {
                 case Keys.Left:
@@ -94,5 +97,6 @@ namespace practice_3_테트리스
 
             }
         }
+
     }
 }
