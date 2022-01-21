@@ -10,7 +10,7 @@ namespace practice_3_테트리스
 {
     internal class Preview
     {
-        Block preview_Block = new Block().null_block(); //프리뷰에 있는 블럭
+        public Block preview_Block = new Block().null_block(); //프리뷰에 있는 블럭
 
         public Graphics prev_g = null;// 프리뷰에 그리는 그래픽 객체
 
@@ -32,6 +32,9 @@ namespace practice_3_테트리스
 
             this.preview_Block = new_block;
         }
+
+        //=================================================================================== 그림 그리기 ===================================================================================
+
         public void Draw_Block(Graphics g, Color c, int x, int y, int cs)
         {
             //네모 블럭 하나 그리는것.
@@ -39,20 +42,22 @@ namespace practice_3_테트리스
             g.DrawRectangle(new Pen(Color.DimGray), x * cs, y * cs, cs, cs);
 
         }
-        public void Draw_Preview(Graphics g, Block b)
+        public void Draw_Preview()
         {
             // 블럭을 프리뷰에 그린다.
             for (int i = 0; i < PVX; i++)
             {
                 for (int j = 0; j < PVY; j++)
                 {
-                    if (b.shape[i, j] != 0)
-                        Draw_Block(g, block_color, i, j, PVCS);
+                    if (this.preview_Block.shape[i, j] != 0)
+                        Draw_Block(this.prev_g, block_color, i, j, PVCS);
                     else
-                        Draw_Block(g, board_color, i, j, PVCS);
+                        Draw_Block(this.prev_g, board_color, i, j, PVCS);
                 }
             }
         }
-
     }
 }
+
+
+//타이핑

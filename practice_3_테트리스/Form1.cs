@@ -12,7 +12,7 @@ namespace practice_3_테트리스
 {
     public partial class Tetris : Form
     {
-        Routine R = new Routine();
+        Manage R = new Manage();
         public Tetris()
         {
             InitializeComponent();
@@ -66,7 +66,7 @@ namespace practice_3_테트리스
         private void timer1_Tick(object sender, EventArgs e)
         {
             //타이머가 작동하면
-            R.new_game.Game_routine();
+            R.Game_routine();
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -75,23 +75,23 @@ namespace practice_3_테트리스
             switch (keyData)
             {
                 case Keys.Left:
-                    R.new_game.Move_Block(0);
+                    R.Move_Block(0);
                     break;
 
                 case Keys.Right:
-                    R.new_game.Move_Block(1);
+                    R.Move_Block(1);
                     break;
 
                 case Keys.Down:
-                    R.new_game.Move_Block(2);
+                    R.Move_Block(2);
                     break;
 
                 case Keys.Up:
-                    R.new_game.Rotate_Block();
+                    R.Rotate_Block();
                     break;
 
                 case Keys.Space:
-                    R.new_game.Drop_Block();
+                    R.Drop_Block();
                     break;
 
             }
