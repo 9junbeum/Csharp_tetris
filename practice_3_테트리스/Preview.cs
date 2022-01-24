@@ -35,7 +35,7 @@ namespace practice_3_테트리스
 
         //=================================================================================== 그림 그리기 ===================================================================================
 
-        public void Draw_Block(Graphics g, Color c, int x, int y, int cs)
+        public void Drawing(Graphics g, Color c, int x, int y, int cs)
         {
             //네모 블럭 하나 그리는것.
             g.FillRectangle(new SolidBrush(c), x * cs, y * cs, cs, cs);
@@ -50,9 +50,9 @@ namespace practice_3_테트리스
                 for (int j = 0; j < PVY; j++)
                 {
                     if (this.preview_Block.shape[i, j] != 0)
-                        Draw_Block(this.prev_g, block_color, i, j, PVCS);
+                        Drawing(this.prev_g, block_color, i, j, PVCS);
                     else
-                        Draw_Block(this.prev_g, board_color, i, j, PVCS);
+                        Drawing(this.prev_g, board_color, i, j, PVCS);
                 }
             }
         }

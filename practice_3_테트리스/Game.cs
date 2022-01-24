@@ -39,10 +39,9 @@ namespace practice_3_테트리스
         }
         
 
-
         //=================================================================================== 그림 그리기 ===================================================================================
 
-        private void Draw_Block(Color c, int x, int y, int cs)
+        private void Drawing(Color c, int x, int y, int cs)
         {
             //buffer = new Bitmap(BX,BY);
             //네모 블럭 하나 그리는것.
@@ -59,26 +58,49 @@ namespace practice_3_테트리스
                 for (int j = 0; j < BY; j++)
                 {
                     if (Game_board[i, j] != 0)
-                        Draw_Block(block_color, i, j, CS);
+                        Drawing(block_color, i, j, CS);
                     else
-                        Draw_Block(board_color, i, j, CS);
+                        Drawing(board_color, i, j, CS);
                 }
             }
             //buffer.
             //buffer.Dispose();
         }
 
-
-        //=================================================================================== 블록 컨트롤 ===================================================================================
-
-        public Block Get_New_Block()
+        public void Draw_Block()
         {
-            //새로운 블럭을 생성하여 반환함.
-            Block new_block = new Block();
-            new_block.Create_Block();
+            //블럭의 x,y좌표
+            int x = on_game_Block.x;
+            int y = on_game_Block.y;
 
-            return new_block;
+            //현재 값으로 블록 지우기 
+            
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    if (on_game_Block.shape[i, j] != 0)
+                    {
+                        Drawing(board_color, i + x, j + y - 1, CS);
+                    }
+                }
+            }
+            //현재 값으로 블록 그리기 
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    if(on_game_Block.shape[i,j] != 0)
+                    {
+                        Drawing(block_color, i + x, j + y, CS);
+                    }
+                }
+            }
+
+            //buffer.
+            //buffer.Dispose();
         }
+
 
     }
 }

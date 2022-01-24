@@ -24,8 +24,8 @@ namespace practice_3_테트리스
         {
             //Tetris가 Load 될때 실행
             //그리는 그래픽 g 인자를 넘겨주는 곳
-            R.new_game.game_g = flowLayoutPanel1.CreateGraphics();
-            R.new_preview.prev_g = pictureBox3.CreateGraphics();
+            R.game_g = flowLayoutPanel1.CreateGraphics();
+            R.prev_g = pictureBox3.CreateGraphics();
         }
 
         private void game_start_Btn_Click(object sender, EventArgs e)
@@ -40,6 +40,7 @@ namespace practice_3_테트리스
                 {
                     //리셋
                     R.Reset_Game();
+                    downtimer.Start();
                 }
                 else if (result == DialogResult.No)
                 {
@@ -47,7 +48,7 @@ namespace practice_3_테트리스
                     downtimer.Start();
                 }
             }
-            else                    //게임 시작 이전.
+            else //게임 시작 이전.
             {
                 //게임이 시작되면 게임판을 리셋하고
                 R.Start_Game();

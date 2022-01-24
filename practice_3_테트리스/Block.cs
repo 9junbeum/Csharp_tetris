@@ -9,35 +9,33 @@ namespace practice_3_테트리스
     internal class Block
     {
         //멤버 변수
-        int x , y;//블럭의 위치
+        public int x , y;//블럭의 위치
         public int[,] shape = new int[4,4];       // 블럭의 모양 (총 7가지)
-        
+        public int Bnum;//블록 넘버
+        public int Snum;//모양 넘버
+
         public Block() 
         {
-            
+            this.x = 0;
+            this.y = 0;
+            this.Bnum = -1;
+            this.Snum = 0;
             //생성자
         }
 
         public Boolean Is_null_block()
         {
             //빈 블럭이면 true
-            for (int i = 0; i < 4; i++)
-            {
-                for (int j = 0; j < 4; j++)
-                {
-                    if(this.shape[i, j] != 0)
-                    {
-                        return false;
-                    }
-                }
-            }
-            return true;
+            if(Bnum == -1)
+                return true;
+            else
+                return false;
         }
         public Block null_block()
         {
             this.x = 0;
             this.y = 0;
-
+            this.Bnum = -1;
             for (int i = 0; i < 4; i++)
             {
                 for (int j = 0; j < 4; j++)
@@ -52,16 +50,15 @@ namespace practice_3_테트리스
         {
             Random random = new Random();       //random 클래스 생성
             int new_block = random.Next(0,7);   //random 클래스로 부터 0~6 난수 생성
+            this.Bnum = new_block;
 
-            for(int i = 0; i < 4; i++)
+            for (int i = 0; i < 4; i++)
             {
                 for(int j = 0; j < 4; j++)
                 {
-                    this.shape[i,j] = BLOCK_SHAPE[new_block, 0,i,j];
+                    this.shape[i,j] = BLOCK_SHAPE[new_block, Snum,i,j];
                 }
             }
-            this.x = 0;
-            this.y = 0;
             return this; //랜덤 모양의 블록 객체를 반환한다.
         }
 
@@ -77,7 +74,21 @@ namespace practice_3_테트리스
         {
             this.y++;
         }
-
+        public void rotate()
+        {
+            int SS = this.Snum++;
+            if (SS == 4)
+            {
+                SS = 0;
+            }
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    this.shape[i, j] = BLOCK_SHAPE[this.Bnum, SS, i, j];
+                }
+            }
+        }
 
         public static readonly int [,,,] BLOCK_SHAPE = new int[7, 4, 4, 4] //블럭 모양, 회전 모양, 가로pixel, 세로 pixel 
         {
