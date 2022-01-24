@@ -115,10 +115,10 @@ namespace practice_3_테트리스
                 {
                     if(on_game_Block.shape[i,j] != 0)
                     {
-                        if((this.Game_board[i+block_x,j+block_y] != 0) ||(j+block_y)>=BY)
+                        if((this.Game_board[i+block_x,j+block_y] != 0) ||(j+block_y)+1>=BY)// 이부분 잘 고쳐야함
                         {
                             //하나라도 겹치면
-                            marking(block_x, block_y-1);
+                            marking(block_x, block_y);
                             return true;
                         }
                     }
@@ -133,7 +133,10 @@ namespace practice_3_테트리스
             {
                 for(int j = 0;j < 4;j++)
                 {
-                    this.Game_board[x+i,y+j] = 1;
+                    if(on_game_Block.shape[i,j] !=0)
+                    {
+                        this.Game_board[x + i, y + j] = 1;
+                    }
                 }
             }
         }
