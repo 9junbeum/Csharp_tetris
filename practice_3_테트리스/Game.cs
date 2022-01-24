@@ -73,7 +73,7 @@ namespace practice_3_테트리스
             int x = on_game_Block.x;
             int y = on_game_Block.y;
 
-            //현재 값으로 블록 지우기 
+            //이전 값으로 블록 지우기 
             
             for (int i = 0; i < 4; i++)
             {
@@ -101,6 +101,68 @@ namespace practice_3_테트리스
             //buffer.Dispose();
         }
 
+        public Boolean is_land()
+        {
+            //땅이나 블록에 내려앉을때 true 리턴
+            //색칠된 블럭의 x,y 좌표
 
+            int block_x = on_game_Block.x;
+            int block_y = on_game_Block.y;
+
+            for (int i = 0; i < 4;i++)
+            {
+                for(int j = 0; j < 4;j++)
+                {
+                    if(on_game_Block.shape[i,j] != 0)
+                    {
+                        if((this.Game_board[i+block_x,j+block_y] != 0) ||(j+block_y)>=BY)
+                        {
+                            //하나라도 겹치면
+                            marking(block_x, block_y-1);
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+
+        }
+        private void marking(int x, int y)
+        {
+            for(int i = 0; i < 4; i++)
+            {
+                for(int j = 0;j < 4;j++)
+                {
+                    this.Game_board[x+i,y+j] = 1;
+                }
+            }
+        }
+
+        public int is_collect()
+        {
+            int score = 0;
+            //한줄 완성되면, 점수 올리기.
+            for(int i = 0;i < BY;i++)
+            {
+                int count = 0;
+                for(int j = 0;j < BX;j++)
+                {
+                    if(this.Game_board[j,i] == 1)
+                    {
+                        count++;
+                        if(count == 10)
+                        {
+                            delete_line();
+                            score += 1;
+                        }
+                    }
+                }
+            }
+            return score;
+        }
+        private void delete_line()
+        {
+            //한줄 지우고 땡기는 함수
+        }
     }
 }

@@ -26,6 +26,7 @@ namespace practice_3_테트리스
             //그리는 그래픽 g 인자를 넘겨주는 곳
             R.game_g = flowLayoutPanel1.CreateGraphics();
             R.prev_g = pictureBox3.CreateGraphics();
+            R.deliver_g();
         }
 
         private void game_start_Btn_Click(object sender, EventArgs e)

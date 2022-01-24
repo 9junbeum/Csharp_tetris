@@ -76,16 +76,16 @@ namespace practice_3_테트리스
         }
         public void rotate()
         {
-            int SS = this.Snum++;
-            if (SS == 4)
+            this.Snum++;
+            if (this.Snum == 4)
             {
-                SS = 0;
+                this.Snum = 0;
             }
             for (int i = 0; i < 4; i++)
             {
                 for (int j = 0; j < 4; j++)
                 {
-                    this.shape[i, j] = BLOCK_SHAPE[this.Bnum, SS, i, j];
+                    this.shape[i, j] = BLOCK_SHAPE[this.Bnum, this.Snum, i, j];
                 }
             }
         }

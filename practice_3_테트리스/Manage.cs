@@ -23,6 +23,7 @@ namespace practice_3_테트리스
             //게임 리셋
             this.new_game = new Game();
             this.new_preview = new Preview();
+            deliver_g();
 
             Start_Game();
         }
@@ -32,8 +33,6 @@ namespace practice_3_테트리스
             //게임시작시 최초 한번만 실행.
 
             //그리기 Graphics 넘겨줌.
-            this.new_game.game_g = this.game_g;
-            this.new_preview.prev_g = this.prev_g;
 
             new_game.Init_Game_Board();  //배경 초기화
             this.score = 0;     //점수 초기화
@@ -45,7 +44,11 @@ namespace practice_3_테트리스
             //자..... 게임을 시작하지... ^@o@^
         }
 
-
+        public void deliver_g()
+        {
+            this.new_game.game_g = this.game_g;
+            this.new_preview.prev_g = this.prev_g;
+        }
 
         public void shift_block()
         {
@@ -59,21 +62,6 @@ namespace practice_3_테트리스
             this.new_preview.Draw_Preview();
         }
 
-        private void show_block()
-        {
-            int x = 3;
-            int y = 0;
-            for (int i = 0; i < 4; i++)
-            {
-                for (int j = 0; j < 4; j++)
-                {
-                    //블럭을 해당 위치에 꺼낸다
-                    new_game.Game_board[i + 3, j] = new_game.on_game_Block.shape[i, j];
-                    
-                }
-            }
-
-        }
 
         public void Move_Block(int key)
         {
@@ -103,6 +91,7 @@ namespace practice_3_테트리스
         {
             //회전
             new_game.on_game_Block.rotate();
+            new_game.Draw_Board();
             new_game.Draw_Block();
         }
 
@@ -114,6 +103,7 @@ namespace practice_3_테트리스
         //=================================================================================== 게임 컨트롤 ===================================================================================
         public void Game_routine() // 1tick
         {
+            score += 1;
             //1tick 마다 실행하는 함수.
             //기능 : 블록 가져오기, 블록을 한칸 아래로 움직이기, 점수 올리기 
 
@@ -125,9 +115,38 @@ namespace practice_3_테트리스
             }
             else//블록이 있으면,
             {
+                //땅에 닿거나 블럭에 닿으면,
+                if(new_game.is_land())
+                {
+                    //한줄 완성되면,
+                    
+                    for(int i = 0; i < new_game.is_collect();i++)
+                    {
+                        int xx = new_game.is_collect();
+                        //점수 차등 배분
+                        switch(xx)
+                        {
+                            case 0:
+                                break;
+                            case 1:
+                                score += 100;
+                                break;
+                            case 2:
+                                score += 300;
+                                break;
+                            case 3:
+                                score += 600;
+                                break;
+                            case 4:
+                                score += 1000;
+                                break;
+                        }
+                    }
+                    shift_block();
+                }
                 new_game.on_game_Block.mb_down();
             }
-            
+            new_game.Draw_Board();
             new_game.Draw_Block();
         }
 
