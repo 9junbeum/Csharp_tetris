@@ -73,16 +73,20 @@ namespace practice_3_테트리스
             switch (key)
             {
                 case 0:
-                    if(new_game.is_side_empty() == 0)//왼쪽이 비었으면, 
+                    if(new_game.is_side_empty() == 0 || new_game.is_side_empty() == 2)//왼쪽이 비었으면, 
                     {
                         new_game.on_game_Block.mb_left();
+                        new_game.Draw_Board();
+                        new_game.Draw_Block();
                     }
                     break;
 
                 case 1:
-                    if (new_game.is_side_empty() == 0)//왼쪽이 비었으면, 
+                    if (new_game.is_side_empty() == 1 || new_game.is_side_empty() == 2)//오른쪽이 비었으면, 
                     {
                         new_game.on_game_Block.mb_right();
+                        new_game.Draw_Board();
+                        new_game.Draw_Block();
                     }
                     break;
 
@@ -99,8 +103,6 @@ namespace practice_3_테트리스
                     }
                     break;
             }
-            new_game.Draw_Board();
-            new_game.Draw_Block();
         }
         public void Rotate_Block()
         {

@@ -120,25 +120,30 @@ namespace practice_3_테트리스
                 {
                     if (on_game_Block.shape[i, j] != 0) //4개의 색칠된 블럭에 관하여
                     {
-                        if(Game_board[block_x + i - 1,block_y + j] != 0)
+                        //벽일 때
+                        if(block_x + i == 0)
                         {
-                            // 왼쪽이 비었을 때
-                            if(Game_board[block_x + i + 1, block_y + j] != 0)
+                            //제일 왼쪽일 때 
+                            left_full = true;
+                        }
+                        else if(block_x + i == 9)
+                        {
+                            //제일 오른쪽일 때
+                            right_full = true;
+                        }
+                        else
+                        {
+                            //벽은 아닐 때
+                            if (Game_board[block_x + i - 1, block_y + j] != 0)
                             {
-                                //양쪽 다 비었을 때
                                 left_full = true;
+                            }
+                            
+                            if (Game_board[block_x + i + 1, block_y + j] != 0)
+                            {
+                                //오른쪽만 비었을 때
                                 right_full = true;
                             }
-                            else
-                            {
-                                //왼쪽만 비었을 때
-                                left_full = true;
-                            }
-                        }
-                        else if(Game_board[block_x + i + 1, block_y + j] != 0)
-                        {
-                            //오른쪽만 비었을 때
-                            right_full=true;
                         }
                     }
                 }
