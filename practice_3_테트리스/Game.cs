@@ -211,7 +211,35 @@ namespace practice_3_테트리스
                 }
             }
         }
+        public Boolean is_overlap()
+        {
+            //현재 겹치는 상태인지, 아닌지 확인하여 
+            //true false 로 반환하는 함수.
 
+            for(int i = 0; i < 4;i++)
+            {
+                for (int j = 0; j < 4;j++)
+                {
+                    if(on_game_Block.shape[i,j] != 0)
+                    {
+                        if((on_game_Block.x +i) >= 0 && (on_game_Block.x + i <= 9) && (on_game_Block.y + j >= 0) && (on_game_Block.y + j <= 19))
+                        {
+                            //정상범위
+                            if (this.Game_board[on_game_Block.x + i, on_game_Block.y + j] != 0)
+                            {
+                                //겹치면,
+                                return true;
+                            }
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
         public int is_collect()
         {
             int score = 0;
@@ -251,6 +279,31 @@ namespace practice_3_테트리스
                     break;
                 }
                 on_game_Block.y += 1;
+            }
+        }
+        public void adjust_xy()
+        {
+            //rotate시 겹침방지를 위해 
+            //좌우로 먼저 조정후 불가능하면, 위로 한칸
+            //위로도 불가능하면, 원래대로 돌려놓는다.
+
+            //색칠된 블럭의 시작 x,y 좌표
+            int block_x = on_game_Block.x;
+            int block_y = on_game_Block.y;
+
+            for (int i = 0;i < 4 ;i++)
+            {
+                for (int j = 0;j < 4;j++)
+                {
+                    if(on_game_Block.shape[i,j] != 0)//블럭에 한해
+                    {
+                        if(Game_board[block_x + i , block_y + j] != 0)
+                        {
+                            //겹치면,
+
+                        }
+                    }
+                }
             }
         }
     }

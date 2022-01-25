@@ -16,7 +16,7 @@ namespace practice_3_테트리스
         public Tetris()
         {
             InitializeComponent();
-            //프로그램이 시작되어도 게임시작전 timer가 동작하면 안되기 때문에 
+            //프로그램이 시작되어도 게임시작전 timer가 동작하면 안되기 때문에
             downtimer.Stop(); //타이머 stop
         }
 
@@ -32,20 +32,23 @@ namespace practice_3_테트리스
         private void game_start_Btn_Click(object sender, EventArgs e)
         {
             //게임 시작 버튼
+            downtimer.Start();
             if (R.Is_Play)    //게임 중.
             {
                 //게임중일때는 리셋할건지 물어본다.
-                downtimer.Stop();
-                DialogResult result = MessageBox.Show("게임이 실행중입니다. 리셋할까요?", "중단", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                R.Is_Play = false;
+                DialogResult result = MessageBox.Show("게임이 실행중입니다. 리셋할까요?", "중단", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
                     //리셋
                     R.Reset_Game();
-                    downtimer.Start();
+                    R.Start_Game();
                 }
                 else if (result == DialogResult.No)
                 {
                     //게임 재개
+                    R.Is_Play=true;
+                    downtimer.Enabled =true;
                     downtimer.Start();
                 }
             }
@@ -53,9 +56,7 @@ namespace practice_3_테트리스
             {
                 //게임이 시작되면 게임판을 리셋하고
                 R.Start_Game();
-                downtimer.Start();
             }
-            this.Focus();
 
         }
 
@@ -68,36 +69,48 @@ namespace practice_3_테트리스
         private void timer1_Tick(object sender, EventArgs e)
         {
             //타이머가 작동하면
-            R.Game_routine();
+            if(R.Is_Play)
+            {
+                R.Game_routine();
+                label3.Text = R.score.ToString();
+            }
+            Invalidate();
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             //키보드 입력 받는 함수
-            switch (keyData)
+            if(R.Is_Play)
             {
-                case Keys.Left:
-                    R.Move_Block(0);
-                    break;
+                switch (keyData)
+                {
+                    case Keys.Left:
+                        R.Move_Block(0);
+                        break;
 
-                case Keys.Right:
-                    R.Move_Block(1);
-                    break;
+                    case Keys.Right:
+                        R.Move_Block(1);
+                        break;
 
-                case Keys.Down:
-                    R.Move_Block(2);
-                    break;
+                    case Keys.Down:
+                        R.Move_Block(2);
+                        break;
 
-                case Keys.Up:
-                    R.Rotate_Block();
-                    break;
+                    case Keys.Up:
+                        R.Rotate_Block();
+                        break;
 
-                case Keys.Z:
-                    R.Drop_Block();
-                    break;
+                    case Keys.Z:
+                        R.Drop_Block();
+                        break;
 
+                }
+                return base.ProcessCmdKey(ref msg, keyData);
             }
-            return base.ProcessCmdKey(ref msg, keyData);
+            else
+            {
+                return false;
+            }
         }
 
     }

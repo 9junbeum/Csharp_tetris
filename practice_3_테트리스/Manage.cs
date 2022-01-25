@@ -57,6 +57,7 @@ namespace practice_3_테트리스
             new_block.Create_Block();
             //프리뷰 블럭을 게임 블럭에 넣고 
             new_game.on_game_Block = new_preview.preview_Block;
+            new_game.on_game_Block.x = 3;
             //프리뷰 블럭에는 새 블럭을 넣는다.
             new_preview.preview_Block = new_block;
             this.new_preview.Draw_Preview();
@@ -110,6 +111,11 @@ namespace practice_3_테트리스
         {
             //회전
             new_game.on_game_Block.rotate();
+            if (new_game.is_overlap())
+            {
+                //겹치면,,,, 다시 되돌려놓는다.
+                new_game.on_game_Block.rotate_();
+            }
             new_game.Draw_Board();
             new_game.Draw_Block();
         }
@@ -122,35 +128,40 @@ namespace practice_3_테트리스
             new_game.Draw_Block();
             calc_score();
             shift_block();
+            new_game.Draw_Board();
+            new_game.Draw_Block();
         }
 
         //=================================================================================== 게임 컨트롤 ===================================================================================
         public void Game_routine() // 1tick
         {
-            score += 1;
-            //1tick 마다 실행하는 함수.
-            //기능 : 블록 가져오기, 블록을 한칸 아래로 움직이기, 점수 올리기 
+            if(Is_Play)
+            {
+                score += 1;
+                //1tick 마다 실행하는 함수.
+                //기능 : 블록 가져오기, 블록을 한칸 아래로 움직이기, 점수 올리기 
 
-            if (new_game.on_game_Block.Is_null_block())//블록이 없으면
-            {
-                shift_block();
-                new_game.Draw_Board();
-                //show_block();
-            }
-            else//블록이 있으면,
-            {
-                //땅에 닿거나 블럭에 닿으면,
-                if(new_game.is_land())
+                if (new_game.on_game_Block.Is_null_block())//블록이 없으면
                 {
-                    //한줄이 완성됐다면, 점수계산하는 함수
-                    calc_score();
-                    //블럭을 교체해주는 함수.
                     shift_block();
+                    new_game.Draw_Board();
+                    //show_block();
                 }
-                new_game.on_game_Block.mb_down();
+                else//블록이 있으면,
+                {
+                    //땅에 닿거나 블럭에 닿으면,
+                    if (new_game.is_land())
+                    {
+                        //한줄이 완성됐다면, 점수계산하는 함수
+                        calc_score();
+                        //블럭을 교체해주는 함수.
+                        shift_block();
+                    }
+                    new_game.on_game_Block.mb_down();
+                }
+                new_game.Draw_Board();
+                new_game.Draw_Block();
             }
-            new_game.Draw_Board();
-            new_game.Draw_Block();
         }
 
         private void calc_score()

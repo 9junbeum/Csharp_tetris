@@ -90,6 +90,21 @@ namespace practice_3_테트리스
             }
         }
 
+        public void rotate_()
+        {
+            this.Snum--;
+            if (this.Snum == -1)
+            {
+                this.Snum = 3;
+            }
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    this.shape[i, j] = BLOCK_SHAPE[this.Bnum, this.Snum, i, j];
+                }
+            }
+        }
         public static readonly int [,,,] BLOCK_SHAPE = new int[7, 4, 4, 4] //블럭 모양, 회전 모양, 가로pixel, 세로 pixel 
         {
             {               //ㅁㅁㅁㅁ

@@ -205,7 +205,6 @@
         private System.Windows.Forms.Button game_finish_Btn;
         private System.Windows.Forms.Button game_start_Btn;
         private System.Windows.Forms.Label label_score;
-        private System.Windows.Forms.Timer downtimer;
         private System.Windows.Forms.PictureBox howtoplaypicture;
         private System.Windows.Forms.Label label1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
@@ -213,6 +212,7 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox2;
+        public System.Windows.Forms.Timer downtimer;
     }
 }
 
