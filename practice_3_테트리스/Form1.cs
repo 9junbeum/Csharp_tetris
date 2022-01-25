@@ -92,7 +92,7 @@ namespace practice_3_테트리스
                     R.Rotate_Block();
                     break;
 
-                case Keys.Space:
+                case Keys.Z:
                     R.Drop_Block();
                     break;
 

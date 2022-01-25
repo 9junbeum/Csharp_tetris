@@ -238,5 +238,20 @@ namespace practice_3_테트리스
         {
             //한줄 지우고 땡기는 함수
         }
+
+        public void Drop()
+        {
+            //끝까지 떨어트리는 함수.
+            for(int i = 0;i<BY;i++)
+            {
+                //계속 1씩 증가하면서 검사.
+                if(is_land())
+                {
+                    marking(on_game_Block.x, on_game_Block.y);
+                    break;
+                }
+                on_game_Block.y += 1;
+            }
+        }
     }
 }

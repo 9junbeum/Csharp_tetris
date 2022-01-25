@@ -100,6 +100,8 @@ namespace practice_3_테트리스
                     else
                     {
                         new_game.on_game_Block.mb_down();
+                        new_game.Draw_Board();
+                        new_game.Draw_Block();
                     }
                     break;
             }
@@ -115,6 +117,11 @@ namespace practice_3_테트리스
         public void Drop_Block()
         {
             //떨어트리는것
+            new_game.Drop();
+            new_game.Draw_Board();
+            new_game.Draw_Block();
+            calc_score();
+            shift_block();
         }
 
         //=================================================================================== 게임 컨트롤 ===================================================================================
