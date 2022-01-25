@@ -73,39 +73,24 @@ namespace practice_3_테트리스
             switch (key)
             {
                 case 0:
-                    new_game.on_game_Block.mb_left();
+                    if(new_game.is_side_empty() == 0)//왼쪽이 비었으면, 
+                    {
+                        new_game.on_game_Block.mb_left();
+                    }
                     break;
 
                 case 1:
-                    new_game.on_game_Block.mb_right();
+                    if (new_game.is_side_empty() == 0)//왼쪽이 비었으면, 
+                    {
+                        new_game.on_game_Block.mb_right();
+                    }
                     break;
 
                 case 2:
                     if (new_game.is_land())
                     {
                         //움직여서 내려앉으면
-                        for (int i = 0; i < new_game.is_collect(); i++)
-                        {
-                            int xx = new_game.is_collect();
-                            //점수 차등 배분
-                            switch (xx)
-                            {
-                                case 0:
-                                    break;
-                                case 1:
-                                    score += 100;
-                                    break;
-                                case 2:
-                                    score += 300;
-                                    break;
-                                case 3:
-                                    score += 600;
-                                    break;
-                                case 4:
-                                    score += 1000;
-                                    break;
-                            }
-                        }
+                        calc_score();
                         shift_block();
                     }
                     else
@@ -148,30 +133,9 @@ namespace practice_3_테트리스
                 //땅에 닿거나 블럭에 닿으면,
                 if(new_game.is_land())
                 {
-                    //한줄 완성되면,
-                    
-                    for(int i = 0; i < new_game.is_collect();i++)
-                    {
-                        int xx = new_game.is_collect();
-                        //점수 차등 배분
-                        switch(xx)
-                        {
-                            case 0:
-                                break;
-                            case 1:
-                                score += 100;
-                                break;
-                            case 2:
-                                score += 300;
-                                break;
-                            case 3:
-                                score += 600;
-                                break;
-                            case 4:
-                                score += 1000;
-                                break;
-                        }
-                    }
+                    //한줄이 완성됐다면, 점수계산하는 함수
+                    calc_score();
+                    //블럭을 교체해주는 함수.
                     shift_block();
                 }
                 new_game.on_game_Block.mb_down();
@@ -180,7 +144,32 @@ namespace practice_3_테트리스
             new_game.Draw_Block();
         }
 
-
+        private void calc_score()
+        {
+            //점수 계산하는 함수
+            for (int i = 0; i < new_game.is_collect(); i++)
+            {
+                int xx = new_game.is_collect();
+                //점수 차등 배분
+                switch (xx)
+                {
+                    case 0:
+                        break;
+                    case 1:
+                        score += 100;
+                        break;
+                    case 2:
+                        score += 300;
+                        break;
+                    case 3:
+                        score += 600;
+                        break;
+                    case 4:
+                        score += 1000;
+                        break;
+                }
+            }
+        }
         public void block_landing()
         {
             //블록이 땅에 닿으면 실행되는 함수.

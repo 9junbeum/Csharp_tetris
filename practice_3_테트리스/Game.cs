@@ -101,6 +101,65 @@ namespace practice_3_테트리스
             //buffer.Dispose();
         }
 
+        public int is_side_empty()
+        {
+            //빈 곳이 없으면 -1
+            //왼쪽이 비었으면, 0
+            //오른쪽이 비었으면, 1
+            //양쪽이 비었으면, 2
+
+            Boolean left_full = false;
+            Boolean right_full = false;
+
+            int block_x = on_game_Block.x;
+            int block_y = on_game_Block.y;
+
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    if (on_game_Block.shape[i, j] != 0) //4개의 색칠된 블럭에 관하여
+                    {
+                        if(Game_board[block_x + i - 1,block_y + j] != 0)
+                        {
+                            // 왼쪽이 비었을 때
+                            if(Game_board[block_x + i + 1, block_y + j] != 0)
+                            {
+                                //양쪽 다 비었을 때
+                                left_full = true;
+                                right_full = true;
+                            }
+                            else
+                            {
+                                //왼쪽만 비었을 때
+                                left_full = true;
+                            }
+                        }
+                        else if(Game_board[block_x + i + 1, block_y + j] != 0)
+                        {
+                            //오른쪽만 비었을 때
+                            right_full=true;
+                        }
+                    }
+                }
+            }
+            if(left_full)
+            {
+                if(right_full)
+                {
+                    return -1;
+                }
+                else
+                {
+                    return 1;
+                }
+            }
+            else if(right_full)
+            {
+                return 0;
+            }
+            return 2;
+        }
         public Boolean is_land()
         {
             //땅이나 블록에 내려앉을때 true 리턴
