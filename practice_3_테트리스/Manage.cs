@@ -125,10 +125,8 @@ namespace practice_3_테트리스
             //떨어트리는것
             new_game.Drop();
             new_game.Draw_Board();
-            new_game.Draw_Block();
             calc_score();
             shift_block();
-            new_game.Draw_Board();
             new_game.Draw_Block();
         }
 
@@ -144,7 +142,6 @@ namespace practice_3_테트리스
                 if (new_game.on_game_Block.Is_null_block())//블록이 없으면
                 {
                     shift_block();
-                    new_game.Draw_Board();
                     //show_block();
                 }
                 else//블록이 있으면,
@@ -167,34 +164,34 @@ namespace practice_3_테트리스
         private void calc_score()
         {
             //점수 계산하는 함수
-            for (int i = 0; i < new_game.is_collect(); i++)
+            int xx = new_game.is_collect();
+            //점수 차등 배분
+            switch (xx)
             {
-                int xx = new_game.is_collect();
-                //점수 차등 배분
-                switch (xx)
-                {
-                    case 0:
-                        break;
-                    case 1:
-                        score += 100;
-                        break;
-                    case 2:
-                        score += 300;
-                        break;
-                    case 3:
-                        score += 600;
-                        break;
-                    case 4:
-                        score += 1000;
-                        break;
-                }
+                case 0:
+                    break;
+                case 1:
+                    this.score += 100;
+                    break;
+                case 2:
+                    this.score += 300;
+                    break;
+                case 3:
+                    this.score += 600;
+                    break;
+                case 4:
+                    this.score += 1000;
+                    break;
             }
         }
-        public void block_landing()
+        public Boolean Game_Over()
         {
-            //블록이 땅에 닿으면 실행되는 함수.
-            //기능 : 가득찬 한줄 없애기, 없어진 한줄 위의 모든 블럭 한칸씩 내리기, 점수 올리기(한번에 없어진 줄 만큼 점수가 두배)
-
+            //게임이 실패했냐?
+            if(new_game.is_overlap())
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

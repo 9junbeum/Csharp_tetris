@@ -73,6 +73,25 @@ namespace practice_3_테트리스
             {
                 R.Game_routine();
                 label3.Text = R.score.ToString();
+                if(R.Game_Over())
+                {
+                    //게임이 종료됨
+                    R.Is_Play = false;
+                    DialogResult result = MessageBox.Show("게임이 끝났습니다.\n 리셋할까요?", "Game Over", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes)
+                    {
+                        //리셋
+                        R.Reset_Game();
+                        R.Start_Game();
+                    }
+                    else if (result == DialogResult.No)
+                    {
+                        //게임 끝
+                        R.Is_Play = false;
+                        downtimer.Enabled = true;
+                        downtimer.Stop();
+                    }
+                }
             }
             Invalidate();
         }

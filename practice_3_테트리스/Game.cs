@@ -254,7 +254,7 @@ namespace practice_3_테트리스
                         count++;
                         if(count == 10)
                         {
-                            delete_line();
+                            delete_line(i);
                             score += 1;
                         }
                     }
@@ -262,9 +262,22 @@ namespace practice_3_테트리스
             }
             return score;
         }
-        private void delete_line()
+        private void delete_line(int i)
         {
-            //한줄 지우고 땡기는 함수
+            //i번째 한줄 지우고 땡기는 함수
+            for (int j = 0; j < BX; j++)
+            {
+                //한줄 지워!
+                this.Game_board[j, i] = 0;
+            }
+            for (int k = i - 1; k >= 0; k--)
+            {
+                for(int q = 0; q < BX; q++)
+                {
+                    this.Game_board[q,k+1] = this.Game_board[q,k];
+                }
+            }
+
         }
 
         public void Drop()

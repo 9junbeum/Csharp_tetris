@@ -14,18 +14,18 @@ namespace practice_3_테트리스
         public int Bnum;//블록 넘버
         public int Snum;//모양 넘버
 
-        public Block() 
+        public Block()//생성자
         {
             this.x = 0;
             this.y = 0;
             this.Bnum = -1;
             this.Snum = 0;
-            //생성자
         }
 
         public Boolean Is_null_block()
         {
             //빈 블럭이면 true
+            //
             if(Bnum == -1)
                 return true;
             else
@@ -33,6 +33,7 @@ namespace practice_3_테트리스
         }
         public Block null_block()
         {
+            //빈블럭 만들어서 블럭을 반환한다.
             this.x = 0;
             this.y = 0;
             this.Bnum = -1;
