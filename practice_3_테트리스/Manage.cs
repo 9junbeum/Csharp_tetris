@@ -81,7 +81,37 @@ namespace practice_3_테트리스
                     break;
 
                 case 2:
-                    new_game.on_game_Block.mb_down();
+                    if (new_game.is_land())
+                    {
+                        //움직여서 내려앉으면
+                        for (int i = 0; i < new_game.is_collect(); i++)
+                        {
+                            int xx = new_game.is_collect();
+                            //점수 차등 배분
+                            switch (xx)
+                            {
+                                case 0:
+                                    break;
+                                case 1:
+                                    score += 100;
+                                    break;
+                                case 2:
+                                    score += 300;
+                                    break;
+                                case 3:
+                                    score += 600;
+                                    break;
+                                case 4:
+                                    score += 1000;
+                                    break;
+                            }
+                        }
+                        shift_block();
+                    }
+                    else
+                    {
+                        new_game.on_game_Block.mb_down();
+                    }
                     break;
             }
             new_game.Draw_Board();

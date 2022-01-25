@@ -104,8 +104,8 @@ namespace practice_3_테트리스
         public Boolean is_land()
         {
             //땅이나 블록에 내려앉을때 true 리턴
-            //색칠된 블럭의 x,y 좌표
 
+            //색칠된 블럭의 시작 x,y 좌표
             int block_x = on_game_Block.x;
             int block_y = on_game_Block.y;
 
@@ -113,9 +113,16 @@ namespace practice_3_테트리스
             {
                 for(int j = 0; j < 4;j++)
                 {
-                    if(on_game_Block.shape[i,j] != 0)
+                    if(on_game_Block.shape[i,j] != 0) //4개의 색칠된 블럭에 관하여
                     {
-                        if((this.Game_board[i+block_x,j+block_y] != 0) ||(j+block_y)+1>=BY)// 이부분 잘 고쳐야함
+                        //땅에 닿았을 때
+                        if ((j + block_y +1) ==20)
+                        {
+                            marking(block_x, block_y);
+                            return true;
+                        }
+                        //블럭에 닿았을 때
+                        else if((this.Game_board[i+block_x,j+block_y+1] != 0))// 이부분 잘 고쳐야함
                         {
                             //하나라도 겹치면
                             marking(block_x, block_y);
