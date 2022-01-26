@@ -21,10 +21,10 @@ namespace practice_3_테트리스
         private Color block_color = Color.OrangeRed;    //블록색
         private Color board_color = Color.OldLace;    //배경색
 
-        public int[,] Game_board = new int[BX,BY];      //게임보드의 속성값(false, true)
+        public int[,] Game_board = new int[BX, BY];      //게임보드의 속성값(false, true)
 
 
-        //Bitmap buffer = new Bitmap(BX,BY);
+        Bitmap buffer = new Bitmap(302, 602);
 
         public void Init_Game_Board()
         {
@@ -37,19 +37,36 @@ namespace practice_3_테트리스
                 }
             }
         }
-        
+
 
         //=================================================================================== 그림 그리기 ===================================================================================
 
+        private void Draw_in_buffer(Color c, int x, int y, int cs)
+        {
+            x *= cs;
+            y *= cs;
+            for (int i = 0; i < cs; i++)
+            {
+                for (int j = 0; j < cs; j++)
+                {
+                    if(i ==0 || j == 0 || i == (cs-1) || j == (cs-1))
+                    {
+                        buffer.SetPixel(i + x, j + y, Color.DimGray);
+                    }
+                    else
+                    {
+                        buffer.SetPixel(i + x, j + y, c);
+                    }
+                }
+            }
+        }
         private void Drawing(Color c, int x, int y, int cs)
         {
-            //buffer = new Bitmap(BX,BY);
             //네모 블럭 하나 그리는것.
             this.game_g.FillRectangle(new SolidBrush(c), x * cs, y * cs, cs, cs);
             this.game_g.DrawRectangle(new Pen(Color.DimGray), x * cs, y * cs, cs, cs);
             
         }
-
         public void Draw_Board()
         {
             //현재 값으로 게임판 그리기 
@@ -58,13 +75,17 @@ namespace practice_3_테트리스
                 for (int j = 0; j < BY; j++)
                 {
                     if (Game_board[i, j] != 0)
-                        Drawing(block_color, i, j, CS);
+                    {
+                        //Drawing(block_color, i, j, CS);
+                        Draw_in_buffer(block_color, i, j, CS);
+                    }
                     else
-                        Drawing(board_color, i, j, CS);
+                    {
+                        //Drawing(board_color, i, j, CS);
+                        Draw_in_buffer(board_color, i, j, CS);
+                    }
                 }
             }
-            //buffer.
-            //buffer.Dispose();
         }
 
         public void Draw_Block()
@@ -74,14 +95,15 @@ namespace practice_3_테트리스
             int y = on_game_Block.y;
 
             //이전 값으로 블록 지우기 
-            
+
             for (int i = 0; i < 4; i++)
             {
                 for (int j = 0; j < 4; j++)
                 {
                     if (on_game_Block.shape[i, j] != 0)
                     {
-                        Drawing(board_color, i + x, j + y - 1, CS);
+                        //Drawing(board_color, i + x, j + y - 1, CS);
+                        Draw_in_buffer(board_color, i + x, j + y - 1, CS);
                     }
                 }
             }
@@ -90,17 +112,21 @@ namespace practice_3_테트리스
             {
                 for (int j = 0; j < 4; j++)
                 {
-                    if(on_game_Block.shape[i,j] != 0)
+                    if (on_game_Block.shape[i, j] != 0)
                     {
-                        Drawing(block_color, i + x, j + y, CS);
+                        //Drawing(block_color, i + x, j + y, CS);
+                        Draw_in_buffer(block_color, i + x, j + y, CS);
                     }
                 }
             }
 
-            //buffer.
+        }
+        public void Real_Draw()
+        {
+            this.game_g.DrawImageUnscaled(this.buffer, Point.Empty);
             //buffer.Dispose();
         }
-
+        //=================================================================================== 조건 판독 ===================================================================================
         public int is_side_empty()
         {
             //빈 곳이 없으면 -1
@@ -121,12 +147,12 @@ namespace practice_3_테트리스
                     if (on_game_Block.shape[i, j] != 0) //4개의 색칠된 블럭에 관하여
                     {
                         //벽일 때
-                        if(block_x + i == 0)
+                        if (block_x + i == 0)
                         {
                             //제일 왼쪽일 때 
                             left_full = true;
                         }
-                        else if(block_x + i == 9)
+                        else if (block_x + i == 9)
                         {
                             //제일 오른쪽일 때
                             right_full = true;
@@ -138,7 +164,7 @@ namespace practice_3_테트리스
                             {
                                 left_full = true;
                             }
-                            
+
                             if (Game_board[block_x + i + 1, block_y + j] != 0)
                             {
                                 //오른쪽만 비었을 때
@@ -148,9 +174,9 @@ namespace practice_3_테트리스
                     }
                 }
             }
-            if(left_full)
+            if (left_full)
             {
-                if(right_full)
+                if (right_full)
                 {
                     return -1;
                 }
@@ -159,7 +185,7 @@ namespace practice_3_테트리스
                     return 1;
                 }
             }
-            else if(right_full)
+            else if (right_full)
             {
                 return 0;
             }
@@ -173,20 +199,20 @@ namespace practice_3_테트리스
             int block_x = on_game_Block.x;
             int block_y = on_game_Block.y;
 
-            for (int i = 0; i < 4;i++)
+            for (int i = 0; i < 4; i++)
             {
-                for(int j = 0; j < 4;j++)
+                for (int j = 0; j < 4; j++)
                 {
-                    if(on_game_Block.shape[i,j] != 0) //4개의 색칠된 블럭에 관하여
+                    if (on_game_Block.shape[i, j] != 0) //4개의 색칠된 블럭에 관하여
                     {
                         //땅에 닿았을 때
-                        if ((j + block_y +1) ==20)
+                        if ((j + block_y + 1) == 20)
                         {
                             marking(block_x, block_y);
                             return true;
                         }
                         //블럭에 닿았을 때
-                        else if((this.Game_board[i+block_x,j+block_y+1] != 0))// 이부분 잘 고쳐야함
+                        else if ((this.Game_board[i + block_x, j + block_y + 1] != 0))// 이부분 잘 고쳐야함
                         {
                             //하나라도 겹치면
                             marking(block_x, block_y);
@@ -200,11 +226,11 @@ namespace practice_3_테트리스
         }
         private void marking(int x, int y)
         {
-            for(int i = 0; i < 4; i++)
+            for (int i = 0; i < 4; i++)
             {
-                for(int j = 0;j < 4;j++)
+                for (int j = 0; j < 4; j++)
                 {
-                    if(on_game_Block.shape[i,j] !=0)
+                    if (on_game_Block.shape[i, j] != 0)
                     {
                         this.Game_board[x + i, y + j] = 1;
                     }
@@ -216,13 +242,13 @@ namespace practice_3_테트리스
             //현재 겹치는 상태인지, 아닌지 확인하여 
             //true false 로 반환하는 함수.
 
-            for(int i = 0; i < 4;i++)
+            for (int i = 0; i < 4; i++)
             {
-                for (int j = 0; j < 4;j++)
+                for (int j = 0; j < 4; j++)
                 {
-                    if(on_game_Block.shape[i,j] != 0)
+                    if (on_game_Block.shape[i, j] != 0)
                     {
-                        if((on_game_Block.x +i) >= 0 && (on_game_Block.x + i <= 9) && (on_game_Block.y + j >= 0) && (on_game_Block.y + j <= 19))
+                        if ((on_game_Block.x + i) >= 0 && (on_game_Block.x + i <= 9) && (on_game_Block.y + j >= 0) && (on_game_Block.y + j <= 19))
                         {
                             //정상범위
                             if (this.Game_board[on_game_Block.x + i, on_game_Block.y + j] != 0)
@@ -244,15 +270,15 @@ namespace practice_3_테트리스
         {
             int score = 0;
             //한줄 완성되면, 점수 올리기.
-            for(int i = 0;i < BY;i++)
+            for (int i = 0; i < BY; i++)
             {
                 int count = 0;
-                for(int j = 0;j < BX;j++)
+                for (int j = 0; j < BX; j++)
                 {
-                    if(this.Game_board[j,i] == 1)
+                    if (this.Game_board[j, i] == 1)
                     {
                         count++;
-                        if(count == 10)
+                        if (count == 10)
                         {
                             delete_line(i);
                             score += 1;
@@ -262,6 +288,8 @@ namespace practice_3_테트리스
             }
             return score;
         }
+
+        //=================================================================================== 계산  ===================================================================================
         private void delete_line(int i)
         {
             //i번째 한줄 지우고 땡기는 함수
@@ -272,9 +300,9 @@ namespace practice_3_테트리스
             }
             for (int k = i - 1; k >= 0; k--)
             {
-                for(int q = 0; q < BX; q++)
+                for (int q = 0; q < BX; q++)
                 {
-                    this.Game_board[q,k+1] = this.Game_board[q,k];
+                    this.Game_board[q, k + 1] = this.Game_board[q, k];
                 }
             }
 
@@ -283,10 +311,10 @@ namespace practice_3_테트리스
         public void Drop()
         {
             //끝까지 떨어트리는 함수.
-            for(int i = 0;i<BY;i++)
+            for (int i = 0; i < BY; i++)
             {
                 //계속 1씩 증가하면서 검사.
-                if(is_land())
+                if (is_land())
                 {
                     marking(on_game_Block.x, on_game_Block.y);
                     break;
@@ -304,13 +332,13 @@ namespace practice_3_테트리스
             int block_x = on_game_Block.x;
             int block_y = on_game_Block.y;
 
-            for (int i = 0;i < 4 ;i++)
+            for (int i = 0; i < 4; i++)
             {
-                for (int j = 0;j < 4;j++)
+                for (int j = 0; j < 4; j++)
                 {
-                    if(on_game_Block.shape[i,j] != 0)//블럭에 한해
+                    if (on_game_Block.shape[i, j] != 0)//블럭에 한해
                     {
-                        if(Game_board[block_x + i , block_y + j] != 0)
+                        if (Game_board[block_x + i, block_y + j] != 0)
                         {
                             //겹치면,
 

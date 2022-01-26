@@ -9,8 +9,8 @@ namespace practice_3_테트리스
     internal class Block
     {
         //멤버 변수
-        public int x , y;//블럭의 위치
-        public int[,] shape = new int[4,4];       // 블럭의 모양 (총 7가지)
+        public int x, y;//블럭의 위치
+        public int[,] shape = new int[4, 4];       // 블럭의 모양 (총 7가지)
         public int Bnum;//블록 넘버
         public int Snum;//모양 넘버
 
@@ -26,7 +26,7 @@ namespace practice_3_테트리스
         {
             //빈 블럭이면 true
             //
-            if(Bnum == -1)
+            if (Bnum == -1)
                 return true;
             else
                 return false;
@@ -41,7 +41,7 @@ namespace practice_3_테트리스
             {
                 for (int j = 0; j < 4; j++)
                 {
-                    this.shape[i,j] = 0;
+                    this.shape[i, j] = 0;
                 }
             }
             return this;
@@ -50,14 +50,14 @@ namespace practice_3_테트리스
         public Block Create_Block() //블럭을 새로 만든다.
         {
             Random random = new Random();       //random 클래스 생성
-            int new_block = random.Next(0,7);   //random 클래스로 부터 0~6 난수 생성
+            int new_block = random.Next(0, 7);   //random 클래스로 부터 0~6 난수 생성
             this.Bnum = new_block;
 
             for (int i = 0; i < 4; i++)
             {
-                for(int j = 0; j < 4; j++)
+                for (int j = 0; j < 4; j++)
                 {
-                    this.shape[i,j] = BLOCK_SHAPE[new_block, Snum,i,j];
+                    this.shape[i, j] = BLOCK_SHAPE[new_block, Snum, i, j];
                 }
             }
             return this; //랜덤 모양의 블록 객체를 반환한다.
@@ -106,7 +106,7 @@ namespace practice_3_테트리스
                 }
             }
         }
-        public static readonly int [,,,] BLOCK_SHAPE = new int[7, 4, 4, 4] //블럭 모양, 회전 모양, 가로pixel, 세로 pixel 
+        public static readonly int[,,,] BLOCK_SHAPE = new int[7, 4, 4, 4] //블럭 모양, 회전 모양, 가로pixel, 세로 pixel 
         {
             {               //ㅁㅁㅁㅁ
                 {

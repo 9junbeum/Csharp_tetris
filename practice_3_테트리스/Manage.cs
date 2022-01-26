@@ -18,6 +18,7 @@ namespace practice_3_테트리스
         public Boolean Is_Play = false; //게임중인가?
         public int score = 0;               //점수
 
+
         public void Reset_Game()
         {
             //게임 리셋
@@ -74,11 +75,10 @@ namespace practice_3_테트리스
             switch (key)
             {
                 case 0:
-                    if(new_game.is_side_empty() == 0 || new_game.is_side_empty() == 2)//왼쪽이 비었으면, 
+                    if (new_game.is_side_empty() == 0 || new_game.is_side_empty() == 2)//왼쪽이 비었으면, 
                     {
                         new_game.on_game_Block.mb_left();
-                        new_game.Draw_Board();
-                        new_game.Draw_Block();
+                        Draw_ALL();
                     }
                     break;
 
@@ -86,8 +86,7 @@ namespace practice_3_테트리스
                     if (new_game.is_side_empty() == 1 || new_game.is_side_empty() == 2)//오른쪽이 비었으면, 
                     {
                         new_game.on_game_Block.mb_right();
-                        new_game.Draw_Board();
-                        new_game.Draw_Block();
+                        Draw_ALL();
                     }
                     break;
 
@@ -101,8 +100,7 @@ namespace practice_3_테트리스
                     else
                     {
                         new_game.on_game_Block.mb_down();
-                        new_game.Draw_Board();
-                        new_game.Draw_Block();
+                        Draw_ALL();
                     }
                     break;
             }
@@ -116,24 +114,22 @@ namespace practice_3_테트리스
                 //겹치면,,,, 다시 되돌려놓는다.
                 new_game.on_game_Block.rotate_();
             }
-            new_game.Draw_Board();
-            new_game.Draw_Block();
+            Draw_ALL();
         }
 
         public void Drop_Block()
         {
             //떨어트리는것
             new_game.Drop();
-            new_game.Draw_Board();
             calc_score();
             shift_block();
-            new_game.Draw_Block();
+            Draw_ALL();
         }
 
         //=================================================================================== 게임 컨트롤 ===================================================================================
         public void Game_routine() // 1tick
         {
-            if(Is_Play)
+            if (Is_Play)
             {
                 score += 1;
                 //1tick 마다 실행하는 함수.
@@ -156,8 +152,7 @@ namespace practice_3_테트리스
                     }
                     new_game.on_game_Block.mb_down();
                 }
-                new_game.Draw_Board();
-                new_game.Draw_Block();
+                Draw_ALL();
             }
         }
 
@@ -183,15 +178,27 @@ namespace practice_3_테트리스
                     this.score += 1000;
                     break;
             }
+
+            if (this.score > 1000)
+            {
+
+            }
         }
         public Boolean Game_Over()
         {
             //게임이 실패했냐?
-            if(new_game.is_overlap())
+            if (new_game.is_overlap())
             {
                 return true;
             }
             return false;
+        }
+
+        private void Draw_ALL()
+        {
+            new_game.Draw_Board();
+            new_game.Draw_Block();
+            new_game.Real_Draw();
         }
     }
 }

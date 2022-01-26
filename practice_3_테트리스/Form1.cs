@@ -47,8 +47,8 @@ namespace practice_3_테트리스
                 else if (result == DialogResult.No)
                 {
                     //게임 재개
-                    R.Is_Play=true;
-                    downtimer.Enabled =true;
+                    R.Is_Play = true;
+                    downtimer.Enabled = true;
                     downtimer.Start();
                 }
             }
@@ -69,11 +69,11 @@ namespace practice_3_테트리스
         private void timer1_Tick(object sender, EventArgs e)
         {
             //타이머가 작동하면
-            if(R.Is_Play)
+            if (R.Is_Play)
             {
                 R.Game_routine();
                 label3.Text = R.score.ToString();
-                if(R.Game_Over())
+                if (R.Game_Over())
                 {
                     //게임이 종료됨
                     R.Is_Play = false;
@@ -99,7 +99,7 @@ namespace practice_3_테트리스
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             //키보드 입력 받는 함수
-            if(R.Is_Play)
+            if (R.Is_Play)
             {
                 switch (keyData)
                 {
