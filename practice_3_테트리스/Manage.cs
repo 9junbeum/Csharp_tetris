@@ -108,11 +108,14 @@ namespace practice_3_테트리스
         public void Rotate_Block()
         {
             //회전
-            new_game.on_game_Block.rotate();
-            if (new_game.is_overlap())
+            if(new_game.on_game_Block.Bnum != -1)
             {
-                //겹치면,,,, 다시 되돌려놓는다.
-                new_game.on_game_Block.rotate_();
+                new_game.on_game_Block.rotate();
+                if (new_game.is_overlap())
+                {
+                    //겹치면,,,, 다시 되돌려놓는다.
+                    new_game.on_game_Block.rotate_();
+                }
             }
             Draw_ALL();
         }

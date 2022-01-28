@@ -94,19 +94,6 @@ namespace practice_3_테트리스
             int x = on_game_Block.x;
             int y = on_game_Block.y;
 
-            //이전 값으로 블록 지우기 
-
-            for (int i = 0; i < 4; i++)
-            {
-                for (int j = 0; j < 4; j++)
-                {
-                    if (on_game_Block.shape[i, j] != 0)
-                    {
-                        //Drawing(board_color, i + x, j + y - 1, CS);
-                        Draw_in_buffer(board_color, i + x, j + y - 1, CS);
-                    }
-                }
-            }
             //현재 값으로 블록 그리기 
             for (int i = 0; i < 4; i++)
             {

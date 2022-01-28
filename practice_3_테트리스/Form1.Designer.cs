@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.Timer downtimer;
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.game_finish_Btn = new System.Windows.Forms.Button();
             this.game_start_Btn = new System.Windows.Forms.Button();
             this.label_score = new System.Windows.Forms.Label();
-            this.downtimer = new System.Windows.Forms.Timer(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.label2 = new System.Windows.Forms.Label();
@@ -42,6 +42,7 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.howtoplaypicture = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            downtimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.howtoplaypicture)).BeginInit();
@@ -91,9 +92,7 @@
             // 
             // downtimer
             // 
-            this.downtimer.Enabled = true;
-            this.downtimer.Interval = 1000;
-            this.downtimer.Tick += new System.EventHandler(this.timer1_Tick);
+            downtimer.Interval = 1000;
             // 
             // label1
             // 
@@ -212,7 +211,6 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox2;
-        public System.Windows.Forms.Timer downtimer;
     }
 }
 
