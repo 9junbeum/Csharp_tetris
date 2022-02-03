@@ -52,20 +52,10 @@ namespace practice_3_테트리스
 
             while (true)//게임 중일 때 계속 돌아감.
             {
-                Stopwatch sw = Stopwatch.StartNew();
-                while(true)
-                {
-                    sw.Stop();
-                    if (sw.ElapsedMilliseconds >= 1000)
-                    {
-                        if(R.Is_Play)
-                        {
-                            tick();
-                            break;
-                        }
-                    }
-                }
-                continue;
+                Thread.BeginCriticalRegion();
+                tick();
+                Thread.EndCriticalRegion();
+                Thread.Sleep(1000);
             }
         }
         //=================================================================================== 시스템 레이아웃 ===================================================================================
