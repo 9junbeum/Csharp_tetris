@@ -42,10 +42,7 @@ namespace practice_3_테트리스
             R.prev_g = pictureBox3.CreateGraphics();
             R.deliver_g();
         }
-        public void Main_Thread()
-        {
 
-        }
         public void Timer_Thread()
         {
             //시간을 측정해서 일정시간 마다 tick 함수를 실행함.
@@ -53,7 +50,10 @@ namespace practice_3_테트리스
             while (true)//게임 중일 때 계속 돌아감.
             {
                 Thread.BeginCriticalRegion();
-                tick();
+                this.Invoke(new Action(() =>
+                {
+                    tick();
+                }));
                 Thread.EndCriticalRegion();
                 Thread.Sleep(1000);
             }
